@@ -43,7 +43,7 @@ Disarankan memakai **Laragon atau XAMPP**.
 Jika pakai Git:
 
 ```sh
-git clone https://github.com/USERNAME/pt-absen-terus.git
+git clone https://github.com/nayotamaryaptra/pt-absen-terus.git
 cd pt-absen-terus
 ```
 
