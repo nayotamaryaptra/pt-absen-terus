@@ -82,13 +82,13 @@ composer update
 
 ```sh
 npm install
+npm run build
 ```
 
 Setelah selesai, **buka terminal baru** lalu jalankan:
 
 ```sh
 npm run dev
-npm run build
 ```
 
 > Biarkan terminal ini **tetap berjalan** karena digunakan untuk kompilasi Tailwind dan Vite.
