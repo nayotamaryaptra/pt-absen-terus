@@ -16,10 +16,13 @@
     </div>
 
     {{-- Password --}}
-    <div>
+    <div class="relative">
         <label class="text-sm text-gray-600">Password</label>
-        <input type="password" name="password" required
+        <input type="password" id="password" name="password" required
             class="w-full mt-1 px-4 py-2 border rounded-lg focus:ring-gray-900 focus:border-gray-900 transition"/>
+        <button type="button" id="togglePassword" class="absolute right-3 top-9 text-gray-500">
+            👁️
+        </button>
     </div>
 
     {{-- Remember --}}
@@ -40,5 +43,17 @@
     </button>
 </form>
 
+{{-- Toggle Password Script --}}
+<script>
+    const togglePassword = document.querySelector('#togglePassword');
+    const password = document.querySelector('#password');
+
+    togglePassword.addEventListener('click', () => {
+        const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+        password.setAttribute('type', type);
+        // optional: ganti ikon
+        togglePassword.textContent = type === 'password' ? '👁️' : '🙈';
+    });
+</script>
 
 @endsection

@@ -7,8 +7,6 @@ use App\Models\Attendance;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
-use App\Exports\AttendanceExport;
-use Maatwebsite\Excel\Facades\Excel;
 
 class AttendanceAdminController extends Controller
 {
