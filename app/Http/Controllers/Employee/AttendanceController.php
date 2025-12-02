@@ -37,7 +37,7 @@ class AttendanceController extends Controller
         $now = Carbon::now();
 
         // aturan jam masuk
-        $officeStart = Carbon::createFromTime(9, 0, 0);
+        $officeStart = Carbon::createFromTime(15, 0, 0);
 
         $status = $now->lessThanOrEqualTo($officeStart) ? 'on_time' : 'late';
 
