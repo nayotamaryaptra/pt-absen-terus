@@ -62,26 +62,28 @@ class EmployeeController extends Controller
 
     public function edit($id)
     {
-        $employee = User::findOrFail($id);
+        $employee = Employee::with('user')->findOrFail($id);
         return view('admin.employees.edit', compact('employee'));
     }
 
     public function update(Request $request, $id)
     {
+        $employee = Employee::with('user')->findOrFail($id);
+
         $request->validate([
             'fullname' => 'required',
-            'email' => 'required|email',
-            'nik' => 'required',
+            'email' => 'required|email|unique:users,email,' . $employee->user->id,
+            'nik' => 'required|unique:employees,nik,' . $employee->id,
         ]);
 
-        $user = User::findOrFail($id);
-
-        $user->update([
+        // Update user table
+        $employee->user->update([
             'name' => $request->fullname,
             'email' => $request->email,
         ]);
 
-        $user->employee->update([
+        // Update employee table
+        $employee->update([
             'nik' => $request->nik,
             'fullname' => $request->fullname,
             'position' => $request->position,
@@ -95,9 +97,16 @@ class EmployeeController extends Controller
             ->with('success', 'Data karyawan berhasil diperbarui.');
     }
 
-    public function destroy($id)
+    public function destroy(Employee $employee)
     {
-        User::findOrFail($id)->delete();
-        return redirect()->route('admin.employees.index')->with('success', 'Karyawan berhasil dihapus.');
+        // Hapus user terkait (jika ada)
+        if ($employee->user) {
+            $employee->user->delete();
+        }
+
+        // Hapus employee dari table employees
+        $employee->delete();
+
+        return back()->with('success', 'Karyawan berhasil dihapus.');
     }
 }

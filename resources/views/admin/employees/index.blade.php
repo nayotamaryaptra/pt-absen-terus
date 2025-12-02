@@ -57,10 +57,13 @@
                                 </a>
 
                                 {{-- Delete --}}
-                                <form onsubmit="return confirm('Hapus karyawan ini?')" method="POST"
-                                    action="{{ route('admin.employees.destroy', $employee->id) }}">
-                                    @csrf @method('DELETE')
-                                    <button class="text-red-600 hover:text-red-800 transition">
+                                <form action="{{ route('admin.employees.destroy', $employee) }}"
+                                    method="POST"
+                                    onsubmit="return confirm('Yakin ingin menghapus?')"
+                                    class="inline-block">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="text-red-600 hover:text-red-900 transition">
                                         <x-heroicon-o-trash class="w-5 h-5"/>
                                     </button>
                                 </form>

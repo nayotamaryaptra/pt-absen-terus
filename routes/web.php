@@ -21,7 +21,8 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::get('/dashboard', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])
     ->name('dashboard');
 
-    Route::resource('employees', \App\Http\Controllers\Admin\EmployeeController::class);
+    Route::resource('employees', \App\Http\Controllers\Admin\EmployeeController::class)
+    ->names('employees');
 
     Route::get('/attendance', [\App\Http\Controllers\Admin\AttendanceAdminController::class, 'index'])
     ->name('attendance.index');
