@@ -95,9 +95,12 @@ class EmployeeController extends Controller
             ->with('success', 'Data karyawan berhasil diperbarui.');
     }
 
-    public function destroy($id)
+    public function destroy(Employee $employee)
     {
-        User::findOrFail($id)->delete();
-        return redirect()->route('admin.employees.index')->with('success', 'Karyawan berhasil dihapus.');
+        if ($employee->user) {
+            $employee->user->delete();
+        }
+        $employee->delete();
+        return back()->with('success', 'Karyawan berhasil dihapus.');
     }
 }

@@ -26,7 +26,7 @@ class AttendancesSeeder extends Seeder {
                     Attendance::create([
                         'employee_id'=>$emp->id,
                         'date'=>$date->format('Y-m-d'),
-                        'check_in'=>$date->copy()->setTime(8,0,0),
+                        'check_in'=>$date->copy()->setTime(10,30,0),
                         'check_out'=>$date->copy()->setTime(17,0,0),
                         'status'=>'on_time'
                     ]);
@@ -35,7 +35,7 @@ class AttendancesSeeder extends Seeder {
                     Attendance::create([
                         'employee_id'=>$emp->id,
                         'date'=>$date->format('Y-m-d'),
-                        'check_in'=>$date->copy()->setTime(8,30,0),
+                        'check_in'=>$date->copy()->setTime(11,30,0),
                         'check_out'=>$date->copy()->setTime(17,10,0),
                         'status'=>'late'
                     ]);
